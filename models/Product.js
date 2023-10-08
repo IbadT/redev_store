@@ -1,5 +1,6 @@
 const db = require('../config/db.js');
 const Sequelize = require('sequelize');
+const OwnerInfo = require('./OwnerInfo.js');
 
 const Product = db.define(
     'product',
@@ -40,7 +41,7 @@ const Product = db.define(
             allowNull: false,
             require: true
         },
-        owner_id: {
+        owner_info_id: {
             type: Sequelize.INTEGER,
             allowNull: false,
             require: true,

@@ -20,7 +20,12 @@ const User = db.define(
             type: Sequelize.STRING,
             allowNull: false,
             require: true
-        }
+        },
+        // owner: {
+        //     type: Sequelize.BOOLEAN,
+        //     allowNull: false,
+        //     require: true
+        // }
     }
 );
 

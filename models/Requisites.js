@@ -1,5 +1,6 @@
 const db = require('../config/db.js');
 const Sequelize = require('sequelize');
+const User = require('./User.js');
 
 const Requisites = db.define(
     'requisite',
@@ -25,6 +26,14 @@ const Requisites = db.define(
             type: Sequelize.INTEGER,
             allowNull: false,
             require: true
+        },
+        user_id: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            references: {
+                model: User,
+                key: 'id'
+            }
         }
     }
 );

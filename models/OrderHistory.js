@@ -7,7 +7,7 @@ const OrderHistory = db.define(
     {
         id: {
             type: Sequelize.INTEGER,
-            primaryKey: false,
+            primaryKey: true,
             allowNull: false,
             autoIncrement: true
         },

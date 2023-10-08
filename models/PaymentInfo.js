@@ -1,7 +1,6 @@
 const db = require('../config/db.js');
 const Sequelize = require('sequelize');
-const UserInfo = require('./UserInfo.js');
-const OwnerInfo = require('./OwnerInfo.js');
+const Product = require('./Product.js');
 const User = require('./User.js');
 
 const PaymentInfo = db.define(
@@ -28,24 +27,6 @@ const PaymentInfo = db.define(
             allowNull: false,
             require: true
         },
-        user_info_id: {
-            type: Sequelize.INTEGER,
-            allowNull: false, 
-            require: true,
-            references: {
-                model: UserInfo,
-                key: 'id'
-            }
-        },
-        owner_info_id: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-            require: true,
-            references: {
-                model: OwnerInfo,
-                key: 'id'
-            }
-        },
         payment_method: {
             type: Sequelize.STRING,
             allowNull: false,
@@ -59,6 +40,14 @@ const PaymentInfo = db.define(
         order_status: {
             type: Sequelize.STRING,
             allowNull: false
+        },
+        product_id: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            references: {
+                model: Product,
+                key: 'id'
+            }
         },
         user_id: {
             type: Sequelize.INTEGER,

@@ -1,9 +1,8 @@
 const db = require('../config/db.js');
 const Sequelize = require('sequelize');
-const UserInfo = require('./UserInfo.js');
 const User = require('./User.js');
 
-const OwnerInfo = db.defind(
+const OwnerInfo = db.define(
     'owner_info',
     {
         id: {
@@ -12,22 +11,13 @@ const OwnerInfo = db.defind(
             allowNull: false,
             autoIncrement: true
         },
-        user_info_id: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-            require: true,
-            references: {
-                model: UserInfo,
-                key: 'id'
-            }
-        },
         organization: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
             allowNull: false,
             require: true
         },
         accaunt_number: {
-            type: Sequelize.INTEGER, // !!!!!!
+            type: Sequelize.INTEGER, 
             allowNull: false,
             require: true
         },

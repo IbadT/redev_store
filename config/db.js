@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 const db = new Sequelize(
-    'reder_stor',
+    'redev_store',
     'postgres',
     'admin',
     {

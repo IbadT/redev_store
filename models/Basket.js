@@ -20,15 +20,6 @@ const Basket = db.define(
                 model: User,
                 key: 'id'
             }
-        },
-        product_id: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-            require: true,
-            references: {
-                model: Product,
-                key: 'id'
-            }
         }
     }
 );
