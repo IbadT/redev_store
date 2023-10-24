@@ -1,11 +1,17 @@
 const Sentry = require('@sentry/node');
 const UserInfoServices = require('../services/UserInfoServices.js');
+const { validationResult } = require('express-validator');
 
 class UserInfoControllers {
+
     async getInfo(req, res) {
         try {
+            // validationResult(req).throw();
             const { id } = req.userId;
             const userInfo = await UserInfoServices.getInfo(id);
+            if(!userInfo) {
+                throw new Error('user doesn\'t have user-info')
+            }
             res.send(userInfo);
         } catch (error) {
             Sentry.captureException(error);
@@ -15,8 +21,10 @@ class UserInfoControllers {
 
     async createUserInfo(req, res) {
         try {
+            // validationResult(req).throw();
+            const { id } = req.userId;
             const { body } = req;
-            const data = UserInfoServices.createUserInfo(body);
+            const data = await UserInfoServices.createUserInfo(id, body);
             res.send(data);
         } catch (error) {
             Sentry.captureException(error);
@@ -26,6 +34,7 @@ class UserInfoControllers {
 
     async updateInfo(req, res) {
         try {
+            // validationResult(req).throw();
             const { id } = req.userId;
             const { body } = req;
             const updatedInfo = await UserInfoServices.updateInfo(id, body);
@@ -38,10 +47,11 @@ class UserInfoControllers {
 
     async updateSomeInfo(req, res) {
         try {
+            // validationResult(req).throw();
             const { id } = req.userId;
             const { body } = req;
             const updateSomeInfo = await UserInfoServices.updateSomeInfo(id, body);
-            return updateSomeInfo;
+            res.send(updateSomeInfo);
         } catch (error) {
             Sentry.captureException(error);
             res.json(error);

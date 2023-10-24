@@ -1,7 +1,7 @@
 const pgDb = require('../config/db.js');
 const Sequelize = require('sequelize');
 
-const OrdersStatues = pgDb.define(
+const OrdersStatuesModel = pgDb.define(
     'order_status',
     {
         id: {
@@ -18,4 +18,4 @@ const OrdersStatues = pgDb.define(
     }
 );
 
-module.exports = OrdersStatues;
+module.exports = OrdersStatuesModel;

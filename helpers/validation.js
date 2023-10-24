@@ -10,7 +10,7 @@ const validation = (req, res, next) => {
             if(err) throw new Error(err);
             req.userId = userId;
             next();
-        }) 
+        }); 
     } catch (error) {
         res.sendStatus(403);
     }

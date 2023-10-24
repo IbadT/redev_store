@@ -1,0 +1,14 @@
+[
+    {
+        "login": "string",
+        "password": "$2b$10$8fKPRsJuxONEy7nw0nAAYOzJafN6wWpA1WVPLqdREtwxEr/M.MKHy"
+    },
+    {
+        "login": "ibadt",
+        "password": "$2b$10$BPlm6rO088ITQg6VZWNLIOuxTANshydxaZmL39MQr2Is22ltdrArS"
+    },
+    {
+        "login": "testlogin",
+        "password": "$2b$10$Ypu2pB6WDasxi0s96BwS/uALqbnzZwF9X8Ti8sUYDZcWvPWStXVUa"
+    }
+]

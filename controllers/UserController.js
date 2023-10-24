@@ -4,28 +4,28 @@ const UserServices = require('../services/UserServices.js');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
+const { validationResult } = require('express-validator');
+
+
+
 class UserControllers {
 
      async login(req, res) {
-        try {
-            const finderUser = await UserServices.findUserByLogin(login);
+         try {
+             validationResult(req).throw();
             const { login, password } = req.body;
-
-            if(finderUser) {
-                const { id } = finderUser;
-                const comparePass = await bcrypt.compare(password, finderUser.password);
-                if(comparePass) {
-                    const token = jwt.sign({ id }, process.env.SECRET_ACCESS_TOKEN);
-                    res.send(token);
-                } else {
-                    res.json({ message: 'invalid token' });
-                }
-            } else {
-                res.sendStatus(400);
-            }
+            const finderUser = await UserServices.findUserByLogin(login);
+                if(finderUser) {
+                    const { id } = finderUser;
+                    const comparePass = await bcrypt.compare(password, finderUser.password);
+                    if(comparePass) {
+                        const token = jwt.sign({ id }, process.env.SECRET_ACCESS_TOKEN);
+                        return res.send(token);
+                    } return res.json({ message: 'invalid token' });
+                } return res.sendStatus(401);
         } catch (error) {
             Sentry.captureException(error);
-            res.sendStatus(401);
+            res.json(error);
         };
     };
 
@@ -33,6 +33,7 @@ class UserControllers {
     async register(req, res) {
 
         try {
+            validationResult(req).throw();
             const { login, password } = req.body;
             const finderUser = await UserServices.findUserByLogin(login);
             if( !finderUser ) {
@@ -51,6 +52,18 @@ class UserControllers {
             res.json(error);
         };
     };
+
+    async logout(req, res) {
+        try {
+            // req.logOut();
+            req.headers.authorization = '';
+            // res.redirect('/')
+            res.sendStatus(200);
+        } catch (error) {
+            Sentry.captureException(error);
+            res.json(error);
+        }
+    }
 
     async deleteUser(req, res) {
 

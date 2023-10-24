@@ -1,9 +1,8 @@
 const db = require('../config/db.js');
 const Sequelize = require('sequelize');
-const User = require('./User.js');
-const Product = require('./Product.js');
+const UserModel = require('./UserModel.js');
 
-const Basket = db.define(
+const BasketModel = db.define(
     'basket',
     {
         id: {
@@ -12,16 +11,21 @@ const Basket = db.define(
             allowNull: false,
             autoIncrement: true
         },
+        products_array: {
+            type: Sequelize.ARRAY(Sequelize.INTEGER),
+            allowNull: false,
+            require: true
+        },
         user_id: {
             type: Sequelize.INTEGER,
             allowNull: false,
             require: true,
             references: {
-                model: User,
+                model: UserModel,
                 key: 'id'
             }
         }
     }
 );
 
-module.exports = Basket;
+module.exports = BasketModel;

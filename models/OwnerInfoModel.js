@@ -1,9 +1,9 @@
 const db = require('../config/db.js');
 const Sequelize = require('sequelize');
-const User = require('./User.js');
+const UserModel = require('./UserModel.js');
 
-const OrderHistory = db.define(
-    'order_history',
+const OwnerInfoModel = db.define(
+    'owner_info',
     {
         id: {
             type: Sequelize.INTEGER,
@@ -11,36 +11,38 @@ const OrderHistory = db.define(
             allowNull: false,
             autoIncrement: true
         },
-        order_name: {
+        organization: {
             type: Sequelize.STRING,
             allowNull: false,
             require: true
         },
-        status: {
-            type: Sequelize.STRING,
+        accaunt_number: {
+            type: Sequelize.INTEGER, 
             allowNull: false,
             require: true
         },
-        delivery: {
-            type: Sequelize.STRING,
+        inn: {
+            type: Sequelize.INTEGER,
             allowNull: false,
-            require: true
+            require: true,
+            unique: true
         },
-        delivery_status: {
-            type: Sequelize.STRING,
+        bik: {
+            type: Sequelize.INTEGER,
             allowNull: false,
-            require: true
+            require: true,
+            unique: true
         },
         user_id: {
             type: Sequelize.INTEGER,
             allowNull: false,
             require: true,
             references: {
-                model: User,
+                model: UserModel,
                 key: 'id'
             }
         }
     }
 );
 
-module.exports = OrderHistory;
+module.exports = OwnerInfoModel;

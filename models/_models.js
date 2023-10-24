@@ -1,46 +1,73 @@
-const User = require('./User.js');
-const UserInfo = require('./UserInfo.js');
-const Requisites = require('./Requisites.js');
-const Product = require('./Product.js');
-const OwnerInfo = require('./OwnerInfo.js');
-const PaymentInfo = require('./PaymentInfo.js');
-const Basket = require('./Basket.js');
-const OrderHistory = require('./OrderHistory.js');
-const BasketProduct = require('./BasketProduct.js');
-const PaymentMethods = require('./PaymentMethods.js');
-const DeliveryMethods = require('./DeliveryMethods.js');
-const OrderStatues = require('./OrderStatuses.js');
+const UserModel = require('./UserModel.js');
+const UserInfoModel = require('./UserInfoModel.js');
+const RequisitesModel = require('./RequisitesModel.js');
+const ProductModel = require('./ProductModel.js');
+const OwnerInfoModel = require('./OwnerInfoModel.js');
+const PaymentInfoModel = require('./PaymentInfoModel.js');
+const BasketModel = require('./BasketModel.js');
+const OrderHistoryModel = require('./OrderHistoryModel.js');
+const BasketProductModel = require('./BasketProductModel.js'); 
+const PaymentMethodsModel = require('./PaymentMethodsModel.js');
+const DeliveryMethodsModel = require('./DeliveryMethodsModel.js');
+const OrderStatusesModel = require('./OrderStatusesModel.js');
+const CategoriesModel = require('./CategoriesModel.js');
 
 
 
 
+UserModel.hasOne(UserInfoModel, { foreignKey: 'user_id' });
+UserInfoModel.belongsTo(UserModel, { foreignKey: 'user_id' });
 
-User.hasOne(UserInfo, { foreignKey: 'user_id' });
-UserInfo.belongsTo(User, { foreignKey: 'user_id' });
+UserInfoModel.hasMany(PaymentInfoModel, { foreignKey: 'user_info_id' });
+PaymentInfoModel.belongsTo(UserInfoModel, { foreignKey: 'user_info_id' });
 
-User.hasOne(Requisites, { foreignKey: 'user_id' });
-Requisites.belongsTo(User, { foreignKey: 'user_id' });
+PaymentInfoModel.hasOne(PaymentMethodsModel, { foreignKey: 'payment_method_id' });
+PaymentMethodsModel.belongsTo(PaymentInfoModel, { foreignKey: 'payment_method_id' });
 
-User.hasMany(OrderHistory, { foreignKey: 'user_id' });
-OrderHistory.belongsTo(User, { foreignKey: 'user_id' });
+PaymentInfoModel.hasOne(DeliveryMethodsModel, { foreignKey: 'delivery_method_id' });
+DeliveryMethodsModel.belongsTo(PaymentInfoModel, { foreignKey: 'delivery_method_id' });
 
-User.hasOne(Basket, { foreignKey: 'user_id' });
-Basket.belongsTo(User, { foreignKey: 'user_id' });
+PaymentInfoModel.hasOne(OrderStatusesModel, { foreignKey: 'order_status_id' });
+OrderStatusesModel.belongsTo(PaymentInfoModel, { foreignKey: 'order_status_id' });
 
-Basket.belongsToMany(Product, { through: 'BasketProduct'});
-Product.belongsToMany(Basket, { through: 'BasketProduct'});
+UserModel.hasOne(RequisitesModel, { foreignKey: 'user_id' });
+RequisitesModel.belongsTo(UserModel, { foreignKey: 'user_id' });
 
-User.hasOne(OwnerInfo, { foreignKey: 'user_id' });
-OwnerInfo.belongsTo(User, { foreignKey: 'user_id' });
+UserModel.hasMany(OrderHistoryModel, { foreignKey: 'user_id' });
+OrderHistoryModel.belongsTo(UserModel, { foreignKey: 'user_id' });
 
-User.hasMany(PaymentInfo, { foreignKey: 'user_id' });
-PaymentInfo.belongsTo(User, { foreignKey: 'user_id' });
+UserModel.hasOne(BasketModel, { foreignKey: 'user_id' });
+BasketModel.belongsTo(UserModel, { foreignKey: 'user_id' });
 
-OwnerInfo.hasMany(Product, { foreignKey: 'owner_info_id' });
-Product.belongsTo(OwnerInfo, { foreignKey: 'owner_info_id' });
 
-Product.hasMany(PaymentInfo, { foreignKey: 'product_id' });
-PaymentInfo.belongsTo(Product, { foreignKey: 'product_id' });
+
+OrderHistoryModel.hasMany(BasketModel, { foreignKey: 'basket_id' });
+BasketModel.belongsTo(OrderHistoryModel, { foreignKey: 'basket_id' });
+
+// OrderStatusesModel.hasOne(OrderHistoryModel, { foreignKey: 'order_status_id' });
+// OrderHistoryModel.belongsTo(OrderStatusesModel, { foreignKey: 'order_status_id' });
+
+
+CategoriesModel.hasMany(ProductModel, { foreignKey: 'category_id' });
+ProductModel.belongsTo(CategoriesModel, { foreignKey: 'category_id' });
+
+BasketModel.belongsToMany(ProductModel, { through: 'BasketProductModel'});
+ProductModel.belongsToMany(BasketModel, { through: 'BasketProductModel'});
+
+UserModel.hasOne(OwnerInfoModel, { foreignKey: 'user_id' });
+OwnerInfoModel.belongsTo(UserModel, { foreignKey: 'user_id' });
+
+OwnerInfoModel.hasMany(ProductModel, { foreignKey: 'owner_info_id' });
+ProductModel.belongsTo(OwnerInfoModel, { foreignKey: 'owner_info_id' });
+
+
+// первой идет таблица, которая не имеет внешнего ключа !!!!!
+BasketModel.hasOne(PaymentInfoModel, { foreignKey: 'basket_id' });
+PaymentInfoModel.belongsTo(BasketModel, { foreignKey: 'basket_id' });
+
+UserModel.hasMany(PaymentInfoModel, { foreignKey: 'user_id' });
+PaymentInfoModel.belongsTo(UserModel, { foreignKey: 'user_id' });
+
 
 
 
@@ -48,72 +75,115 @@ PaymentInfo.belongsTo(Product, { foreignKey: 'product_id' });
 
 (async () => {
 
-    // await User.sync({ force: true }).then(() => {
-    //     console.log('User was created...');
+    // const fs = require('fs');
+
+    // await UserModel.sync({ force: true }).then(() => {
+    //     fs.readFile('./jsonMethods/users.json', 'utf8', (err, users_json) => {
+    //         if(err) throw new Error(err);
+    //         const parseUsers = JSON.parse(users_json);
+    //         for(let user of parseUsers) {
+    //             UserModel.create(user);
+    //         };
+    //     });
     // });
 
-    // await UserInfo.sync({ force: true }).then(() => {
+    // await UserInfoModel.sync({ force: true }).then(() => {
     //     console.log('UserInfo was created...');
     // });
 
-    // await Requisites.sync({ force: true }).then(() => {
+    // await RequisitesModel.sync({ force: true }).then(() => {
     //     console.log('Requisites was created...');
     // });
     
-    // await OrderHistory.sync({ force: true }).then(() => {
-    //     console.log('OrderHistory was created...');
-    // });
-    
-    // await OwnerInfo.sync({ force: true }).then(() => {
+    // await OwnerInfoModel.sync({ force: true }).then(() => {
     //     console.log('OwnerInfo was created...');
+    //     fs.readFile('./jsonMethods/ownerInfo.json', 'utf8', (err, ownerInfo_json) => {
+    //         if(err) throw new Error(err);
+    //         const parseOwnerInfos = JSON.parse(ownerInfo_json);
+    //         for(let ownerInfo of parseOwnerInfos) {
+    //             OwnerInfoModel.create(ownerInfo);
+    //         };
+    //     });
     // });
 
-    // await Product.sync({ force: true }).then(() => {
-    //     console.log('Product was created...');
-    // });
-
-    // await Basket.sync({ force: true }).then(() => {
+    // await BasketModel.sync({ force: true }).then(() => {
     //     console.log('Basket was created...');
     // });
-    
-    // await PaymentInfo.sync({ force: true }).then(() => {
-    //     console.log('PaymentInfo was created...');
-    // });
 
 
-    // const fs = require('fs');
-    // await PaymentMethods.sync({ force: true }).then(() => {
-    //     fs.readFile('./jsonMethods/paymentMethods.json', 'utf-8', (err, methods) => {
+
+    // await CategoriesModel.sync({ force: true }).then(() => {
+    //     fs.readFile('./jsonMethods/productCategories.json', 'utf8', (err, category_name_json) => {
     //         if(err) throw new Error(err);
-    //         console.log(methods);
-    //         const parseMethods = JSON.parse(methods);
-    //         console.log(parseMethods);
-    //         for(let i of parseMethods) {
-    //             console.log({ methods: i });
-    //             PaymentMethods.create({ method: i })
+    //         const parseCategory_name = JSON.parse(category_name_json);
+    //         for(let category_name of parseCategory_name) {
+    //             CategoriesModel.create({ category_name });
     //         };
-    //     })
+    //     });
+    // });
+    
+    // await ProductModel.sync({ force: true }).then(() => {
+    //     fs.readFile('./jsonMethods/products.json', 'utf8', (err, products_json) => {
+    //         if(err) throw new Error(err);
+    //         const parseProducts = JSON.parse(products_json);
+    //         for(let product of parseProducts) {
+    //             ProductModel.create(product);
+    //         };
+    //     });
     // });
 
-    // await DeliveryMethods.sync({ force: true }).then(() => [
+    // await BasketProductModel.sync({ force: true }).then(() => {
+    //     console.log('BasketProductModel was created...');
+    // }); 
+
+
+
+
+    // await OrderHistoryModel.sync({ force: true }).then(() => {
+    //     console.log('OrderHistory was created...');
+    // }).catch(err => console.log(err));
+
+
+
+
+
+
+
+
+    // await PaymentMethodsModel.sync({ force: true }).then(() => {
+    //     fs.readFile('./jsonMethods/paymentMethods.json', 'utf8', (err, methods) => {
+    //         if(err) throw new Error(err);
+    //         const parseMethods = JSON.parse(methods);
+    //         for(let method of parseMethods) {
+    //             PaymentMethodsModel.create({ method })
+    //         };
+    //     });
+    // }).catch(err => console.log(err));
+
+    // await DeliveryMethodsModel.sync({ force: true }).then(() => {
     //     fs.readFile('./jsonMethods/deliveryMethods.json', 'utf8', (err, methods) => {
     //         if(err) throw new Error(err);
     //         const parseMethods = JSON.parse(methods);
     //         for(let method of parseMethods) {
-    //             DeliveryMethods.create({ method });
-    //         }
+    //             DeliveryMethodsModel.create({ method });
+    //         };
     //     })
-    // ]);
+    // }).catch(err => console.log(err));
 
-    // await OrderStatues.sync({ force: true }).then(() => {
+    // await OrderStatusesModel.sync({ force: true }).then(() => {
     //     fs.readFile('./jsonMethods/orderStatuses.json', 'utf8', (err, statuses) => {
     //         if(err) throw new Error(err);
     //         const parseStatuses = JSON.parse(statuses);
     //         for(let status of parseStatuses) {
-    //             OrderStatues.create({ status });
-    //         }
-    //     })
-    // });
+    //             OrderStatusesModel.create({ status });
+    //         };
+    //     });
+    // }).catch(err => console.log(err));
+
+    // await PaymentInfoModel.sync({ force: true }).then(() => {
+    //     console.log('PaymentInfo was created...');
+    // }).catch(err => console.log(err));
+
 
 })();
 
@@ -121,16 +191,17 @@ PaymentInfo.belongsTo(Product, { foreignKey: 'product_id' });
 
 
 module.exports = {
-    User,
-    UserInfo,
-    Requisites,
-    Product,
-    OwnerInfo,
-    Basket,
-    PaymentInfo,
-    OrderHistory,
-    BasketProduct,
-    PaymentMethods,
-    DeliveryMethods,
-    OrderStatues
+    UserModel,
+    UserInfoModel,
+    RequisitesModel,
+    ProductModel,
+    OwnerInfoModel,
+    BasketModel,
+    PaymentInfoModel,
+    OrderHistoryModel,
+    BasketProductModel,
+    PaymentMethodsModel,
+    DeliveryMethodsModel,
+    OrderStatusesModel,
+    CategoriesModel
 };

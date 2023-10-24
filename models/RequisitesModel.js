@@ -1,8 +1,8 @@
 const db = require('../config/db.js');
 const Sequelize = require('sequelize');
-const User = require('./User.js');
+const UserModel = require('./UserModel.js');
 
-const Requisites = db.define(
+const RequisitesModel = db.define(
     'requisite',
     {
         id: {
@@ -31,11 +31,11 @@ const Requisites = db.define(
             type: Sequelize.INTEGER,
             allowNull: false,
             references: {
-                model: User,
+                model: UserModel,
                 key: 'id'
             }
         }
     }
 );
 
-module.exports = Requisites;
+module.exports = RequisitesModel;

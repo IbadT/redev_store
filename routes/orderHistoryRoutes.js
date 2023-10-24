@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const OrderHistoryControllers = require('../controllers/OrderHistoryControllers.js')
+const validation = require('../helpers/validation.js');
 
 /**
  * @swagger
@@ -14,7 +15,7 @@ const OrderHistoryControllers = require('../controllers/OrderHistoryControllers.
  *         description: Seccess
  */
 
-router.get('/get', OrderHistoryControllers.getOrderHistory);
+router.get('/get', validation, OrderHistoryControllers.getOrderHistory);
 
 
 /**
@@ -32,22 +33,16 @@ router.get('/get', OrderHistoryControllers.getOrderHistory);
  *           schema:
  *             type: object
  *             properties:
- *               order_name:
+ *               delivery :
  *                 type: string
- *               status:
- *                 type: string
- *               delivery:
- *                 type: string
- *               delivery_status:
- *                 type: string
- *               user_id:
+ *               basket_id :
  *                 type: integer
  *     responses:
  *       '200':
  *         description: Seccess
  */
 
-router.post('/add', OrderHistoryControllers.addOrderHistory);
+router.post('/add', validation, OrderHistoryControllers.addOrderHistory);
 
 
 /**
@@ -63,6 +58,6 @@ router.post('/add', OrderHistoryControllers.addOrderHistory);
  *         description: Seccess
  */
 
-router.delete('/delete', OrderHistoryControllers.deleteOrderHistory);
+router.delete('/delete', validation, OrderHistoryControllers.deleteOrderHistory);
 
 module.exports = router;

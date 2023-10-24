@@ -1,0 +1,492 @@
+[
+    {
+        "name": "TV",
+        "description": "Some description",
+        "img": "https://",
+        "count": 14,
+        "color": "Black-white",
+        "price": 990.90,
+        "category_id": 1,
+        "owner_info_id": 1
+    },
+    {
+        "name": "TV",
+        "description": "Some description",
+        "img": "https://",
+        "count":18,
+        "color": "Black",
+        "price":130.99,
+        "category_id": 1,
+        "owner_info_id": 1
+    },
+    {
+        "name": "T-short",
+        "description": "Some description",
+        "img": "https://",
+        "count": 35,
+        "color": "White",
+        "price": 37.90,
+        "category_id": 2,
+        "owner_info_id": 1
+    },
+    {
+        "name": "T-short",
+        "description": "Some description",
+        "img": "https://",
+        "count": 13,
+        "color": "Red",
+        "price": 9.99,
+        "category_id": 2,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Zara",
+        "description": "Some description",
+        "img": "https://",
+        "count": 20,
+        "color": "Gray",
+        "price":79.90,
+        "category_id": 3,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Zara",
+        "description": "Some description",
+        "img": "https://",
+        "count": 20,
+        "color": "Blue",
+        "price": 134.00,
+        "category_id": 3,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sofa",
+        "description": "Some description",
+        "img": "https://",
+        "count": 12,
+        "color": "Black",
+        "price": 700.00,
+        "category_id": 4,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sofa",
+        "description": "Some description",
+        "img": "https://",
+        "count": 10,
+        "color": "White",
+        "price": 490.00,
+        "category_id": 4,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sportswear",
+        "description": "Some description",
+        "img": "https://",
+        "count": 35,
+        "color": "White",
+        "price": 13.00,
+        "category_id": 5,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sportswear",
+        "description": "Some description",
+        "img": "https://",
+        "count": 30,
+        "color": "Green",
+        "price": 10.90,
+        "category_id": 5,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sandwich",
+        "description": "Some description",
+        "img": "https://",
+        "count": 72,
+        "color": "Brown",
+        "price": 8.90,
+        "category_id": 6,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sandwich",
+        "description": "Some description",
+        "img": "https://",
+        "count": 22,
+        "color": "Black",
+        "price": 19.99,
+        "category_id": 6,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Book",
+        "description": "Some description",
+        "img": "https://",
+        "count": 40,
+        "color": "Purple",
+        "price": 20.00,
+        "category_id": 7,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Book",
+        "description": "Some description",
+        "img": "https://",
+        "count": 21,
+        "color": "Black",
+        "price": 39.90,
+        "category_id": 7,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Children Toy",
+        "description": "Some description",
+        "img": "https://",
+        "count": 78,
+        "color": "Green",
+        "price": 13.90,
+        "category_id": 8,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Children Toy",
+        "description": "Some description",
+        "img": "https://",
+        "count": 14.50,
+        "color": "Yelow",
+        "price": 50.90,
+        "category_id": 8,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Zara",
+        "description": "Some description",
+        "img": "https://",
+        "count": 25,
+        "color": "Yelow",
+        "price": 135.00,
+        "category_id": 3,
+        "owner_info_id": 1
+    },
+    {
+        "name": "TV",
+        "description": "Some description",
+        "img": "https://",
+        "count": 13,
+        "color": "Black",
+        "price": 190.00,
+        "category_id": 1,
+        "owner_info_id": 1
+    },
+    {
+        "name": "T-short",
+        "description": "Some description",
+        "img": "https://",
+        "count": 43,
+        "color": "Yellow",
+        "price": 25.00,
+        "category_id": 2,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sofa",
+        "description": "Some description",
+        "img": "https://",
+        "count": 15,
+        "color": "Red",
+        "price": 650.00,
+        "category_id": 4,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sportswear",
+        "description": "Some description",
+        "img": "https://",
+        "count": 37,
+        "color": "Purple",
+        "price": 14.50,
+        "category_id": 5,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sandwich",
+        "description": "Some description",
+        "img": "https://",
+        "count": 24,
+        "color": "Brown",
+        "price": 19.90,
+        "category_id": 6,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sandwich",
+        "description": "Some description",
+        "img": "https://",
+        "count": 12,
+        "color": "Brown",
+        "price": 13.50,
+        "category_id": 7,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Children Toy",
+        "description": "Some description",
+        "img": "https://",
+        "count": 54,
+        "color": "Yellow-red",
+        "price": 15.50,
+        "category_id": 8,
+        "owner_info_id": 1
+    },
+    {
+        "name": "TV",
+        "description": "Some description",
+        "img": "https://",
+        "count": 12,
+        "color": "Black-white",
+        "price": 1300.00,
+        "category_id": 1,
+        "owner_info_id": 1
+    },
+    {
+        "name": "TV",
+        "description": "Some description",
+        "img": "https://",
+        "count": 43,
+        "color": "Black",
+        "price": 790.00,
+        "category_id": 1,
+        "owner_info_id": 1
+    },
+    {
+        "name": "T-short",
+        "description": "Some description",
+        "img": "https://",
+        "count": 37,
+        "color": "Yellow-blue",
+        "price": 29.90,
+        "category_id": 2,
+        "owner_info_id": 1
+    },
+    {
+        "name": "T-short",
+        "description": "Some description",
+        "img": "https://",
+        "count": 22,
+        "color": "Blue",
+        "price": 35.50,
+        "category_id": 2,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Zara",
+        "description": "Some description",
+        "img": "https://",
+        "count": 32,
+        "color": "Brown",
+        "price": 79.00,
+        "category_id": 3,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Zara",
+        "description": "Some description",
+        "img": "https://",
+        "count": 31,
+        "color": "Brown",
+        "price": 59.00,
+        "category_id": 3,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sofa",
+        "description": "Some description",
+        "img": "https://",
+        "count": 9,
+        "color": "Yellow",
+        "price": 790.00,
+        "category_id": 4,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sofa",
+        "description": "Some description",
+        "img": "https://",
+        "count": 10,
+        "color": "Black",
+        "price": 480.90,
+        "category_id": 4,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sportswear",
+        "description": "Some description",
+        "img": "https://",
+        "count": 19,
+        "color": "Green-black",
+        "price": 35.90,
+        "category_id": 5,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sportswear",
+        "description": "Some description",
+        "img": "https://",
+        "count": 17,
+        "color": "Black",
+        "price": 13.50,
+        "category_id": 5,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sandwich",
+        "description": "Some description",
+        "img": "https://",
+        "count": 31,
+        "color": "Brown",
+        "price": 13.90,
+        "category_id": 6,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sandwich",
+        "description": "Some description",
+        "img": "https://",
+        "count": 41,
+        "color": "Black",
+        "price": 13.90,
+        "category_id": 6,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sandwich",
+        "description": "Some description",
+        "img": "https://",
+        "count": 28,
+        "color": "Black",
+        "price": 21.50,
+        "category_id": 7,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sandwich",
+        "description": "Some description",
+        "img": "https://",
+        "count": 14,
+        "color": "Black-white",
+        "price": 15.00,
+        "category_id": 7,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Children Toy",
+        "description": "Some description",
+        "img": "https://",
+        "count": 13,
+        "color": "Green",
+        "price": 5.00,
+        "category_id": 8,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Children Toy",
+        "description": "Some description",
+        "img": "https://",
+        "count": 17,
+        "color": "Gray",
+        "price": 99.99,
+        "category_id": 8,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Zara",
+        "description": "Some description",
+        "img": "https://",
+        "count": 51,
+        "color": "Gray",
+        "price": 79.99,
+        "category_id": 3,
+        "owner_info_id": 1
+    },
+    {
+        "name": "TV",
+        "description": "Some description",
+        "img": "https://",
+        "count": 8,
+        "color": "White",
+        "price": 699.00,
+        "category_id": 1,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Zara",
+        "description": "Some description",
+        "img": "https://",
+        "count": 29,
+        "color": "White",
+        "price": 13.90,
+        "category_id": 3,
+        "owner_info_id": 1
+    },
+    {
+        "name": "T-short",
+        "description": "Some description",
+        "img": "https://",
+        "count": 23,
+        "color": "Black",
+        "price": 13.50,
+        "category_id": 2,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sofa",
+        "description": "Some description",
+        "img": "https://",
+        "count": 12,
+        "color": "Black-white",
+        "price": 699.00,
+        "category_id": 4,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sportswear",
+        "description": "Some description",
+        "img": "https://",
+        "count": 12,
+        "color": "Blue",
+        "price": 320.90,
+        "category_id": 5,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sandwich",
+        "description": "Some description",
+        "img": "https://",
+        "count": 56,
+        "color": "Brown",
+        "price": 3.49,
+        "category_id": 6,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Sandwich",
+        "description": "Some description",
+        "img": "https://",
+        "count": 124,
+        "color": "Black",
+        "price": 7.99,
+        "category_id": 7,
+        "owner_info_id": 1
+    },
+    {
+        "name": "Children Toy",
+        "description": "Some description",
+        "img": "https://",
+        "count": 79,
+        "color": "Blue",
+        "price": 8.49,
+        "category_id": 8,
+        "owner_info_id": 1
+    }
+]

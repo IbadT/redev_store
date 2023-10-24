@@ -1,28 +1,37 @@
-const { OrderHistory } = require('../models/_models.js');
+const { OrderHistoryModel, BasketModel } = require('../models/_models.js');
+const count_price = require('../helpers/count_price.js');
 
 class OrderHistoryServices {
 
-    async getOrderHistory(id) {
+    async getOrderHistory(user_id) {
         return new Promise((res, rej) => {
-            OrderHistory.findAll({ where: { user_id: id }}).then(orderHistory => {
+            OrderHistoryModel.findAll({ where: { user_id }}).then(orderHistory => {
                 res(orderHistory);
-            })
-        })
-    }
-    async addOrderHistory(body) {
+            });
+        });
+    };
+
+    async addOrderHistory(user_id, body) {
         return new Promise((res, rej) => {
-            OrderHistory.create(body).then(createdOrderHistory => {
-                res(createdOrderHistory);
+            const { basket_id } = body;
+            BasketModel.findOne({ where: { id: basket_id }}).then(async basket => {
+                const total_price = (await count_price(basket)).toFixed(2);
+                return OrderHistoryModel.create({ basket_id, total_price, user_id }).then(createdOrderHistory => {
+                    res(createdOrderHistory);
+                })
             })
+
         })
-    }
-    async deleteOrderHistory(id) {
+    };
+
+    async deleteOrderHistory(user_id) {
         return new Promise((res, rej) => {
-            OrderHistory.destroy({ where: { user_id: id }}).then(deletedResult => {
+            OrderHistoryModel.destroy({ where: { user_id }}).then(deletedResult => {
                 res(deletedResult)
-            })
-        })
-    }    
+            });
+        });
+    };
+
 };
 
 module.exports = new OrderHistoryServices();

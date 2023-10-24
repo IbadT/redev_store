@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const RequisitesControllers = require('../controllers/RequisitesControllers.js');
-
+const validation = require('../helpers/validation.js');
+const { param } = require('express-validator');
 
 
 /**
@@ -16,7 +17,7 @@ const RequisitesControllers = require('../controllers/RequisitesControllers.js')
  *         description: Seccess
  */
 
-router.get('/card', RequisitesControllers.getCards); 
+router.get('/card', validation, RequisitesControllers.getCards); 
 
 
 /**
@@ -45,23 +46,28 @@ router.get('/card', RequisitesControllers.getCards);
  *         description: Seccess
  */
 
-router.post('/add-card', RequisitesControllers.addCard);
+router.post('/add-card', validation, RequisitesControllers.addCard);
 
 
 /**
  * @swagger
- * /api/requisites/delete-card:
+ * /api/requisites/delete-card/{cardId}:
  *   delete:
  *     summary: Delete card's data
  *     tags: [Card]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: cardId
+ *         type: integer
+ *         required: true
  *     responses:
  *       '200':
  *         description: Seccess
  */
 
-router.delete('/delete-card', RequisitesControllers.deleteCard); 
+router.delete('/delete-card/:cardId', validation, param('cardId').toInt(), RequisitesControllers.deleteCard); 
 
 
 module.exports = router;

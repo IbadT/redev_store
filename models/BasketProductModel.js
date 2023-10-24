@@ -1,9 +1,9 @@
 const pgDb = require('../config/db.js');
 const Sequelize = require('sequelize');
-const Basket = require('./Basket.js');
-const Product = require('./Product.js');
+const BasketModel = require('./BasketModel.js');
+const ProductModel = require('./ProductModel.js');
 
-const BasketProduct = pgDb.define(
+const BasketProductModel = pgDb.define(
     'basket_product',
     {
         id: {
@@ -16,7 +16,7 @@ const BasketProduct = pgDb.define(
             type: Sequelize.INTEGER,
             allowNull: false,
             references: {
-                model: Basket,
+                model: BasketModel,
                 key: 'id'
             }
         },
@@ -24,11 +24,11 @@ const BasketProduct = pgDb.define(
             type: Sequelize.INTEGER,
             allowNull: false,
             references: {
-                model: Product,
+                model: ProductModel,
                 key: 'id'
             }
         }
     }
 );
 
-module.exports = new BasketProduct();
+module.exports = BasketProductModel;

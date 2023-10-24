@@ -1,6 +1,19 @@
 require('dotenv').config();
 const router = require('express').Router();
 const UserControllers = require('../controllers/UserController.js');
+const validation = require('../helpers/validation.js');
+
+// const { body, check, header } = require('express-validator');
+
+
+
+// function isLoggedIn(req, res, next) {
+//     if(req.isAuthenticated()) {
+//         return next();
+//     }
+//     res.redirect('/login');
+// }
+
 
 
 /**
@@ -58,6 +71,22 @@ router.post('/register', UserControllers.register);
 
 /**
  * @swagger
+ * /api/authorization/logout:
+ *   post:
+ *     summary: Logout 
+ *     tags: [Authorization]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       '200':
+ *         description: Seccess
+ */
+
+router.post('/logout', validation, UserControllers.logout);
+
+
+/**
+ * @swagger
  * /api/Authorization/delete-user:
  *   delete:
  *     summary: Delete user
@@ -76,7 +105,7 @@ router.post('/register', UserControllers.register);
  *         description: Bad Request
  */
 
-router.delete('/delete-user', UserControllers.deleteUser);
+router.delete('/delete-user', validation, UserControllers.deleteUser);
 
 
 module.exports = router;

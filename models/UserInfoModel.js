@@ -1,9 +1,9 @@
 const db = require('../config/db.js');
 const Sequelize = require('sequelize');
-const User = require('./User.js');
+const UserModel = require('./UserModel.js');
 
-const OwnerInfo = db.define(
-    'owner_info',
+const UserInfoModel = db.define(
+    'user_info',
     {
         id: {
             type: Sequelize.INTEGER,
@@ -11,38 +11,46 @@ const OwnerInfo = db.define(
             allowNull: false,
             autoIncrement: true
         },
-        organization: {
+        first_name: {
             type: Sequelize.STRING,
             allowNull: false,
             require: true
         },
-        accaunt_number: {
-            type: Sequelize.INTEGER, 
+        name: {
+            type: Sequelize.STRING,
             allowNull: false,
             require: true
         },
-        inn: {
-            type: Sequelize.INTEGER,
+        last_name: {
+            type: Sequelize.STRING,
             allowNull: false,
-            require: true,
-            unique: true
+            require: true
         },
-        bik: {
-            type: Sequelize.INTEGER,
+        adress: {
+            type: Sequelize.STRING,
             allowNull: false,
-            require: true,
-            unique: true
+            require: true
+        },
+        phone_number: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            require: true
+        },
+        email: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            require: true
         },
         user_id: {
             type: Sequelize.INTEGER,
             allowNull: false,
             require: true,
             references: {
-                model: User,
+                model: UserModel,
                 key: 'id'
             }
         }
     }
 );
 
-module.exports = OwnerInfo;
+module.exports = UserInfoModel;

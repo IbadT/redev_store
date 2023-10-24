@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const BasketControllers = require('../controllers/BasketControllers.js');
+const validation = require('../helpers/validation.js');
+const { param } = require('express-validator')
 
 
 /**
@@ -15,32 +17,28 @@ const BasketControllers = require('../controllers/BasketControllers.js');
  *         description: Seccess
  */
 
-router.get('/get', BasketControllers.getBasket);
+router.get('/get', validation, BasketControllers.getBasket);
 
 
 /**
  * @swagger
- * /api/basket/add:
+ * /api/basket/add/{product_id}:
  *   post:
  *     summary: Add product in user's basket
  *     tags: [Basket]
  *     security: 
  *       - bearerAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               user_id:
- *                 type: integer
+ *     parameters:
+ *       - in: path
+ *         name: product_id
+ *         type: integer
+ *         required: true
  *     responses:
  *       '200':
  *         description: Seccess
  */
 
-router.post('/add', BasketControllers.addBasket);
+router.post('/add/:product_id', validation, param('product_id').toInt(), BasketControllers.addBasket);
 
 
 /**
@@ -56,7 +54,7 @@ router.post('/add', BasketControllers.addBasket);
  *         description: Seccess
  */
 
-router.delete('/delete', BasketControllers.deleteBasket);
+router.delete('/delete', validation, BasketControllers.deleteBasket);
 
 
 module.exports = router;

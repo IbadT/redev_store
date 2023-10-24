@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const PaymentInfoControllers = require('../controllers/PaymentInfoControllers.js');
+const validation = require('../helpers/validation.js');
 
 
 
@@ -16,7 +17,7 @@ const PaymentInfoControllers = require('../controllers/PaymentInfoControllers.js
  *         description: Seccess
  */
 
-router.get('/get', PaymentInfoControllers.getPaymentInfo);
+router.get('/get', validation, PaymentInfoControllers.getPaymentInfo);
 
 
 /**
@@ -35,26 +36,26 @@ router.get('/get', PaymentInfoControllers.getPaymentInfo);
  *             type: object
  *             properties:
  *               amount_of_payment:
- *                 type: float              
+ *                 type: integer              
  *               order_date:
  *                 type: string
  *               purpose_of_payment:
  *                 type: string
- *               payment_method:
- *                 type: string
- *               delivery_method:
- *                 type: string
- *               order_status:
- *                 type: string
+ *               payment_method_id:
+ *                 type: integer
+ *               delivery_method_id:
+ *                 type: integer
+ *               order_status_id:
+ *                 type: integer
  *               product_id:
  *                 type: integer
- *               user_id:
+ *               basket_id: 
  *                 type: integer
  *     responses:
  *       '200':
  *         description: Seccess
  */
 
-router.post('/add', PaymentInfoControllers.addPaymentInfo)
+router.post('/add', validation, PaymentInfoControllers.addPaymentInfo)
 
 module.exports = router;

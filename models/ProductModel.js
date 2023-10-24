@@ -1,10 +1,10 @@
 const db = require('../config/db.js');
 const Sequelize = require('sequelize');
-const Product = require('./Product.js');
-const User = require('./User.js');
+const OwnerInfoModel = require('./OwnerInfoModel.js');
+const CategoriesModel = require('./CategoriesModel.js');
 
-const PaymentInfo = db.define(
-    'peyment_info',
+const ProductModel = db.define(
+    'product',
     {
         id: {
             type: Sequelize.INTEGER,
@@ -12,53 +12,55 @@ const PaymentInfo = db.define(
             allowNull: false,
             autoIncrement: true
         },
-        amount_of_payment: {
+        name: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            require: true
+        },
+        description: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            require: true
+        },
+        img: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            require: true
+        },
+        count: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            require: true
+        },
+        color: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            requrie: true
+        },
+        price: {
             type: Sequelize.FLOAT,
             allowNull: false,
             require: true
         },
-        order_date: {
-            type: Sequelize.STRING,
-            allowNull: false,
-            require: true
-        },
-        purpose_of_payment: {
-            type: Sequelize.STRING,
-            allowNull: false,
-            require: true
-        },
-        payment_method: {
-            type: Sequelize.STRING,
-            allowNull: false,
-            require: true
-        },
-        delivery_method: {
-            type: Sequelize.STRING,
-            allowNull: false,
-            require: true
-        },
-        order_status: {
-            type: Sequelize.STRING,
-            allowNull: false
-        },
-        product_id: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-            references: {
-                model: Product,
-                key: 'id'
-            }
-        },
-        user_id: {
+        category_id: {
             type: Sequelize.INTEGER,
             allowNull: false,
             require: true,
             references: {
-                model: User,
+                model: CategoriesModel,
+                key: 'id'
+            }
+        },
+        owner_info_id: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            require: true,
+            references: {
+                model: OwnerInfoModel,
                 key: 'id'
             }
         }
     }
 );
 
-module.exports = PaymentInfo
+module.exports = ProductModel;

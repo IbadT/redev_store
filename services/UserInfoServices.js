@@ -1,37 +1,50 @@
-const { UserInfo } = require('../models/UserInfo.js');
+const { UserInfoModel } = require('../models/_models.js');
 
 class UserInfoServices {
-    async getInfo(id) {
+
+    async getInfo(user_id) {
         return new Promise((res, rej) => {
-            UserInfo.findOne({ where: { id: id }}).then(userInfo => {
-                res(userInfo);
+            UserInfoModel.findOne({ where: { user_id }}).then(userInfo => {
+                if(userInfo) {
+                    res(userInfo);
+                } rej('User don\'t added user-info');
             });
         });
     };
 
-    async createUserInfo(body) {
+    async createUserInfo(user_id, body) {
         return new Promise((res, rej) => {
-            UserInfo.create(body).then(createdData => {
-                res(createdData);
+            UserInfoModel.findOne({ where: { user_id } }).then(userInfo => {
+                if(userInfo) {
+                    rej('User info is already added');
+                }
+                UserInfoModel.create({ ...body, user_id }).then(createdData => {
+                    res(createdData);
+                });
             });
         });
     };
 
-    async updateInfo(id, body) {
+    async updateInfo(user_id, body) {
         return new Promise((res, rej) => {
-            UserInfo.update({ where: { id: id}, body}).then(updatedInfo => {
-                res(updatedInfo);
+            UserInfoModel.update(body, { where: { user_id } }).then(updatedStatus => {
+                if( updatedStatus[0] ) {
+                    return UserInfoModel.findOne({ where: { user_id }}).then(data => res(data));
+                } rej('Bad Request');
             });
         });
     };
 
-    async updateSomeInfo(id, body) {
+    async updateSomeInfo(user_id, body) {
         return new Promise((res, rej) => {
-            UserInfo.update({ where: { id: id }, body}).then(updatedSomeInfo => {
-                res(updatedSomeInfo);
+            UserInfoModel.update(body, { where: { user_id } }).then(updatedStatus => {
+                if( updatedStatus[0] ) {
+                    return UserInfoModel.findOne({ where: { user_id }}).then(updatedInfo => res(updatedInfo));
+                } rej(updatedStatus);
             });
         });
     };
+
 };
 
 module.exports = new UserInfoServices();

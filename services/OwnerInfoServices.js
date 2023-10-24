@@ -1,28 +1,42 @@
-const { OwnerInfo } = require('../models/_models.js');
+const { OwnerInfoModel } = require('../models/_models.js');
 
 
 class OwnerInfoServices {
-    async getOwnerInfo(id) {
+    async getOwnerInfo(user_id) {
         return new Promise((res, rej) => {
-            OwnerInfo.findOne({ where: { id: id}}).then(ownerInfo => {
-                res(ownerInfo);
+            OwnerInfoModel.findOne({ where: { user_id } }).then(ownerInfo => {
+                if(ownerInfo) {
+                    res(ownerInfo);
+                } else {
+                    rej('Owner info is don\'t added...');
+                }
             });
         });
     };
 
-    async addOwnerInfo(id, body) { // check body
+    async addOwnerInfo(user_id, body) {
         return new Promise((res, rej) => {
-            OwnerInfo.create(body).then(addedOwnerInfo => {
-                res.send(addedOwnerInfo);
+            OwnerInfoModel.findOne({ where: { user_id } }).then(ownerInfo => {
+                if( !ownerInfo ) {
+                    return OwnerInfoModel.create({ ...body, user_id }).then(addedOwnerInfo => {
+                        res(addedOwnerInfo);
+                    });
+                } rej({ message: 'this user already has owner-info'});
             });
         });
     };
 
-    async editOwnerInfo(id, body) {
+    async editOwnerInfo(user_id, body) {
         return new Promise((res, rej) => {
-            OwnerInfo.update({ where: { user_id: id}, body}).then(editedOwnerInfo => {
-                res(editedOwnerInfo);
-            });
+            OwnerInfoModel.findOne({ where: { user_id }}).then(ownerInfo => {
+                if(ownerInfo) {
+                    OwnerInfoModel.update({ ...body, user_id }, { where: { user_id } }).then(editedOwnerInfo => {
+                        if( editedOwnerInfo ) {
+                            return OwnerInfoModel.findOne({ where: { user_id }}).then(data => res(data));
+                        } return rej({ message: 'Bad Request'})
+                    });
+                } return rej('Owner info is don\'t added...');
+            })
         });
     };
 };

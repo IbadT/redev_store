@@ -1,8 +1,8 @@
-const pgDb = require('../config/db.js');
+const db = require('../config/db.js');
 const Sequelize = require('sequelize');
 
-const DeliveryMethods = pgDb.define(
-    'delivery_methods',
+const UserModel = db.define(
+    'user',
     {
         id: {
             type: Sequelize.INTEGER,
@@ -10,7 +10,13 @@ const DeliveryMethods = pgDb.define(
             autoIncrement: true,
             allowNull: false
         },
-        method: {
+        login: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            require: true,
+            unique: true
+        },
+        password: {
             type: Sequelize.STRING,
             allowNull: false,
             require: true
@@ -18,4 +24,4 @@ const DeliveryMethods = pgDb.define(
     }
 );
 
-module.exports = DeliveryMethods;
+module.exports = UserModel;

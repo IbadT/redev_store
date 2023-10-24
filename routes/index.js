@@ -1,27 +1,27 @@
 const router = require('express').Router();
 
-const authorization = require('./authorization.js');
-router.use('/authorization', authorization);
+const authorizationRoutes = require('./authorizationRoutes.js');
+router.use('/authorization', authorizationRoutes); // done
 
-const userInfo = require('./userInfoRoutes.js');
-router.use('/user-info', userInfo);
+const userInfoRoutes = require('./userInfoRoutes.js');
+router.use('/user-info', userInfoRoutes); // done
 
-const requisites = require('./requisitesRoutes.js');
-router.use('/requisites', requisites);
+const requisitesRoutes = require('./requisitesRoutes.js');
+router.use('/requisites', requisitesRoutes); // done
 
-const products = require('./productRoutes.js');
-router.use('/products', products);
+const productsRoutes = require('./productRoutes.js');
+router.use('/products', productsRoutes); // done
 
-const ownerInfo = require('./ownerInfoRoutes.js');
-router.use('/owner-info', ownerInfo);
+const ownerInfoRoutes = require('./ownerInfoRoutes.js');
+router.use('/owner-info', ownerInfoRoutes); // done
 
-const orderHistory = require('./orderHistoryRoutes.js');
-router.use('/order-history', orderHistory);
+const basketRoutes = require('./basketRoutes.js');
+router.use('/basket', basketRoutes); // done
 
-const basket = require('./basketRoutes.js');
-router.use('/basket', basket);
+const orderHistoryRoutes = require('./orderHistoryRoutes.js');
+router.use('/order-history', orderHistoryRoutes); // done
 
-const paymentInfo = require('./paymentInfoRoutes.js');
-router.use('/payment-info', paymentInfo);
+const paymentInfoRoutes = require('./paymentInfoRoutes.js');
+router.use('/payment-info', paymentInfoRoutes); // update
 
 module.exports = router;

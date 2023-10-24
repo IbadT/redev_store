@@ -1,0 +1,22 @@
+[
+    {
+        "organization": "string",
+        "accaunt_number": 0,
+        "inn": 0,
+        "bik": 0,
+        "user_id": 1
+    },    {
+        "organization": "ibadt",
+        "accaunt_number": 2,
+        "inn": 2,
+        "bik": 2,
+        "user_id": 2
+    },
+    {
+        "organization": "testlogin",
+        "accaunt_number": 3,
+        "inn": 3,
+        "bik": 3,
+        "user_id": 3
+    }
+]

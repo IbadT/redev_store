@@ -1,8 +1,8 @@
-const db = require('../config/db.js');
+const pgDb = require('../config/db.js');
 const Sequelize = require('sequelize');
 
-const PaymentMethods = db.define(
-    'payment_method',
+const DeliveryMethodsModel = pgDb.define(
+    'delivery_methods',
     {
         id: {
             type: Sequelize.INTEGER,
@@ -18,4 +18,4 @@ const PaymentMethods = db.define(
     }
 );
 
-module.exports = PaymentMethods;
+module.exports = DeliveryMethodsModel;

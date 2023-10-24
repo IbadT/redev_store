@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const OwnerInfoControllers = require('../controllers/OwnerInfoControllers.js')
-
+const validation = require('../helpers/validation.js');
+const { header } = require('express-validator');
 
 
 
@@ -17,7 +18,7 @@ const OwnerInfoControllers = require('../controllers/OwnerInfoControllers.js')
  *         description: Seccess
  */
 
-router.get('/get', OwnerInfoControllers.getOwnerInfo); 
+router.get('/get', validation, header('Authorization').notEmpty(), OwnerInfoControllers.getOwnerInfo); 
 
 
 /**
@@ -43,14 +44,12 @@ router.get('/get', OwnerInfoControllers.getOwnerInfo);
  *                 type: integer
  *               bik:
  *                 type: integer
- *               user_id:
- *                 type: integer
  *     responses:
  *       '200':
  *         description: Seccess
  */
 
-router.post('/add', OwnerInfoControllers.addOwnerInfo);
+router.post('/add', validation, OwnerInfoControllers.addOwnerInfo);
 
 
 /**
@@ -76,14 +75,12 @@ router.post('/add', OwnerInfoControllers.addOwnerInfo);
  *                 type: integer
  *               bik:
  *                 type: integer
- *               user_id:
- *                 type: integer
  *     responses:
  *       '200':
  *         description: Seccess
  */
 
-router.put('/edit', OwnerInfoControllers.editOwnerInfo);
+router.put('/edit', validation, OwnerInfoControllers.editOwnerInfo);
 
 
 module.exports = router;

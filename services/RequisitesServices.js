@@ -1,29 +1,31 @@
-const { Requisites } = require('../models/Requisites.js');
+const { RequisitesModel } = require('../models/_models.js');
 
 class RequisitesServices {
-    async getCards(id) {
+
+    async getCards(user_id) {
         return new Promise((res, rej) => {
-            Requisites.findAll({ where: { user_id: id }}).then(cards => {
+            RequisitesModel.findAll({ where: { user_id }}).then(cards => {
                 res(cards);
             });
         });
     };
 
-    async addCard(id, body) {
+    async addCard(user_id, body) {
         return new Promise((res, rej) => {
-            Requisites.create(id, body).then(addedCard => {
+            RequisitesModel.create({...body, user_id}).then(addedCard => {
                 res(addedCard);
             })
         });
     };
 
-    async deleteCard(id, cardId) {
+    async deleteCard(user_id, id) {
         return new Promise((res, rej) => {
-            Requisites.delete({where : { user_id: id, id: cardId }}).then(deleteResult => {
+            RequisitesModel.destroy({ where : { id, user_id }}).then(deleteResult => {
                 res(deleteResult);
-            })
-        })
-    }
+            });
+        });
+    };
+
 };
 
 module.exports = new RequisitesServices();
