@@ -3,22 +3,25 @@ const { PaymentInfoModel, UserInfoModel, BasketModel } = require('../models/_mod
 class PaymentInfoServices {
 
     async getPaymentInfo(user_id) {
-        return new Promise((res, rej) => {
-            PaymentInfoModel.findAll({ where: { user_id }}).then(info => {
-                res(info);
-            });
+        return new Promise(async (res, rej) => {
+
+            const info = await PaymentInfoModel.findAll({ where: { user_id }})
+            res(info);
+        
         });
     };
 
     async addPaymentInfo(user_id, body) {
-        return new Promise((res, rej) => {
-            UserInfoModel.findOne({ where: { user_id }}).then(user_info => {
-                const { id } = user_info;
-                const obj = {...body, user_info_id: id, user_id }
-                return PaymentInfoModel.create(obj).then(addedPaymentInfo => {
-                    res(addedPaymentInfo);
-                });
-            });
+        return new Promise(async (res, rej) => {
+
+            const user_info = await UserInfoModel.findOne({ where: { user_id }});
+
+            const { id } = user_info;
+            const obj = {...body, user_info_id: id, user_id };
+
+            const addedPaymentInfo = await PaymentInfoModel.create(obj)
+            res(addedPaymentInfo);
+            
         });
     };
 

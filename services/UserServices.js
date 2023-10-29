@@ -4,30 +4,43 @@ const { UserModel, OwnerInfoModel, RequisitesModel } = require('../models/_model
 class UserServices {
     
     async findUserByLogin(login) {
-        return new Promise((res, rej) => {
-            UserModel.findOne({ where: { login }}).then(user => res(user));
+        return new Promise(async (res, rej) => {
+
+            const user = await UserModel.findOne({ where: { login }});
+            res(user);
+
         });
     };
 
     async createUser(obj) {
-        return new Promise((res, rej) => {
-            UserModel.create(obj).then(createdUser => res(createdUser));
+        return new Promise(async (res, rej) => {
+
+            const createdUser = await UserModel.create(obj);
+            res(createdUser);
         });
     };
 
     async deleteUser(user_id) {     
-        return new Promise((res, rej) => {
-            const owner = OwnerInfoModel.findOne({ where: { user_id }});
-            UserModel.delete({ where: { user_id }}).then(deleteResult => {
-                if(deleteResult && owner) {
-                    OwnerInfoModel.delete({ where: { user_id }}).then(result => console.log('owner info: ', result));
-                    RequisitesModel.delete({ where: { user_id }}).then(result => console.log('requisites: ', result));
-                    // delete Product because user-owner was deleted
-                    // delete OrdersHistory because user-owner and justing user was deleted
-                }
-                OwnerInfoModel.delete({ where: { user_id }}).then(result => console.log('user info: ', result));
-                res(deleteResult);
-            });
+        return new Promise(async (res, rej) => {
+
+            const owner = await OwnerInfoModel.findOne({ where: { user_id }});
+
+            const deleteResult = await UserModel.delete({ where: { user_id }});
+
+            if(deleteResult && owner) {
+                const ownerInfoDeleteResult = await OwnerInfoModel.delete({ where: { user_id }});
+                console.log('owner info: ', ownerInfoDeleteResult);
+
+                const requisitesDeleteResul = await RequisitesModel.delete({ where: { user_id }});
+                console.log('requisites: ', requisitesDeleteResul);
+
+                // delete Product because user-owner was deleted
+                // delete OrdersHistory because user-owner and justing user was deleted
+            }
+            const ownerInfoDeleteResult = await OwnerInfoModel.delete({ where: { user_id }});
+            console.log('user info: ', ownerInfoDeleteResult);
+            res(ownerInfoDeleteResult);
+
         });
     };
 };
