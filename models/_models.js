@@ -40,9 +40,9 @@ UserModel.hasOne(BasketModel, { foreignKey: 'user_id' });
 BasketModel.belongsTo(UserModel, { foreignKey: 'user_id' });
 
 
-
-OrderHistoryModel.hasMany(BasketModel, { foreignKey: 'basket_id' });
-BasketModel.belongsTo(OrderHistoryModel, { foreignKey: 'basket_id' });
+// !!!!
+PaymentInfoModel.hasOne(OrderHistoryModel, { foreignKey: 'payment_info_id' });
+OrderHistoryModel.belongsTo(PaymentInfoModel, { foreignKey: 'payment_info_id' });
 
 // OrderStatusesModel.hasOne(OrderHistoryModel, { foreignKey: 'order_status_id' });
 // OrderHistoryModel.belongsTo(OrderStatusesModel, { foreignKey: 'order_status_id' });
@@ -75,7 +75,7 @@ PaymentInfoModel.belongsTo(UserModel, { foreignKey: 'user_id' });
 
 (async () => {
 
-    // const fs = require('fs');
+    const fs = require('fs');
 
     // await UserModel.sync({ force: true }).then(() => {
     //     fs.readFile('./jsonMethods/users.json', 'utf8', (err, users_json) => {
@@ -85,15 +85,15 @@ PaymentInfoModel.belongsTo(UserModel, { foreignKey: 'user_id' });
     //             UserModel.create(user);
     //         };
     //     });
-    // });
+    // }).catch(err => console.log(err));;
 
     // await UserInfoModel.sync({ force: true }).then(() => {
     //     console.log('UserInfo was created...');
-    // });
+    // }).catch(err => console.log(err));
 
     // await RequisitesModel.sync({ force: true }).then(() => {
     //     console.log('Requisites was created...');
-    // });
+    // }).catch(err => console.log(err));
     
     // await OwnerInfoModel.sync({ force: true }).then(() => {
     //     console.log('OwnerInfo was created...');
@@ -104,11 +104,11 @@ PaymentInfoModel.belongsTo(UserModel, { foreignKey: 'user_id' });
     //             OwnerInfoModel.create(ownerInfo);
     //         };
     //     });
-    // });
+    // }).catch(err => console.log(err));
 
     // await BasketModel.sync({ force: true }).then(() => {
     //     console.log('Basket was created...');
-    // });
+    // }).catch(err => console.log(err));
 
 
 
@@ -120,36 +120,24 @@ PaymentInfoModel.belongsTo(UserModel, { foreignKey: 'user_id' });
     //             CategoriesModel.create({ category_name });
     //         };
     //     });
-    // });
+    // }).catch(err => console.log(err));
     
     // await ProductModel.sync({ force: true }).then(() => {
-    //     fs.readFile('./jsonMethods/products.json', 'utf8', (err, products_json) => {
+    //     fs.readFile('./jsonMethods/products.json', 'utf8', async (err, products_json) => {
     //         if(err) throw new Error(err);
     //         const parseProducts = JSON.parse(products_json);
-    //         for(let product of parseProducts) {
-    //             ProductModel.create(product);
-    //         };
+    //         await Promise.all(parseProducts.map(async product => {
+    //             return await ProductModel.create(product)
+
+    //         })).then(data => console.log(data.id)).catch(err => console.error(err));
     //     });
     // });
 
     // await BasketProductModel.sync({ force: true }).then(() => {
     //     console.log('BasketProductModel was created...');
-    // }); 
+    // }).catch(err => console.log(err));; 
 
-
-
-
-    // await OrderHistoryModel.sync({ force: true }).then(() => {
-    //     console.log('OrderHistory was created...');
-    // }).catch(err => console.log(err));
-
-
-
-
-
-
-
-
+    
     // await PaymentMethodsModel.sync({ force: true }).then(() => {
     //     fs.readFile('./jsonMethods/paymentMethods.json', 'utf8', (err, methods) => {
     //         if(err) throw new Error(err);
@@ -159,7 +147,7 @@ PaymentInfoModel.belongsTo(UserModel, { foreignKey: 'user_id' });
     //         };
     //     });
     // }).catch(err => console.log(err));
-
+    
     // await DeliveryMethodsModel.sync({ force: true }).then(() => {
     //     fs.readFile('./jsonMethods/deliveryMethods.json', 'utf8', (err, methods) => {
     //         if(err) throw new Error(err);
@@ -169,7 +157,7 @@ PaymentInfoModel.belongsTo(UserModel, { foreignKey: 'user_id' });
     //         };
     //     })
     // }).catch(err => console.log(err));
-
+    
     // await OrderStatusesModel.sync({ force: true }).then(() => {
     //     fs.readFile('./jsonMethods/orderStatuses.json', 'utf8', (err, statuses) => {
     //         if(err) throw new Error(err);
@@ -179,12 +167,15 @@ PaymentInfoModel.belongsTo(UserModel, { foreignKey: 'user_id' });
     //         };
     //     });
     // }).catch(err => console.log(err));
-
+    
     // await PaymentInfoModel.sync({ force: true }).then(() => {
     //     console.log('PaymentInfo was created...');
     // }).catch(err => console.log(err));
-
-
+    
+    // await OrderHistoryModel.sync({ force: true }).then(() => {
+    //     console.log('OrderHistory was created...');
+    // }).catch(err => console.log(err));
+    
 })();
 
 

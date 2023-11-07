@@ -1,8 +1,8 @@
 const db = require('../config/db.js');
 const Sequelize = require('sequelize');
 const UserModel = require('./UserModel.js');
-const OrderStatusesModel = require('./OrderStatusesModel.js');
-const BasketModel = require('./BasketModel.js');
+// const OrderStatusesModel = require('./OrderStatusesModel.js');
+const PaymentInfoModel = require('./PaymentInfoModel.js');
 
 const OrderHistoryModel = db.define(
     'order_history',
@@ -13,7 +13,7 @@ const OrderHistoryModel = db.define(
             allowNull: false,
             autoIncrement: true
         },
-        total_price: {
+        price: {
             type: Sequelize.FLOAT,
             allowNull: false,
             require: true
@@ -27,14 +27,19 @@ const OrderHistoryModel = db.define(
         //         key: 'id'
         //     }
         // },
-        basket_id: {
+        payment_info_id: {
             type: Sequelize.INTEGER,
             allowNull: false,
             require: true,
             references: {
-                model: BasketModel,
+                model: PaymentInfoModel,
                 key: 'id'
             }
+        },
+        product_id: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            require: true
         },
         user_id: {
             type: Sequelize.INTEGER,

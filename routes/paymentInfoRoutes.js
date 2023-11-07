@@ -34,23 +34,20 @@ router.get('/get', validation, PaymentInfoControllers.getPaymentInfo);
  *         application/json:
  *           schema:
  *             type: object
- *             properties:
- *               amount_of_payment:
- *                 type: integer              
+ *             properties:           
  *               order_date:
  *                 type: string
  *               purpose_of_payment:
  *                 type: string
  *               payment_method_id:
  *                 type: integer
+ *                 default: 2
  *               delivery_method_id:
  *                 type: integer
+ *                 default: 1
  *               order_status_id:
  *                 type: integer
- *               product_id:
- *                 type: integer
- *               basket_id: 
- *                 type: integer
+ *                 default: 1
  *     responses:
  *       '200':
  *         description: Seccess

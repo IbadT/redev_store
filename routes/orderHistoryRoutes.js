@@ -20,29 +20,23 @@ router.get('/get', validation, OrderHistoryControllers.getOrderHistory);
 
 /**
  * @swagger
- * /api/order-history/add:
+ * /api/order-history/add/{payment_info_id}:
  *   post:
  *     summary: Add order history
  *     tags: [Order-History]
  *     security:
  *       - bearerAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               delivery :
- *                 type: string
- *               basket_id :
- *                 type: integer
+ *     parameters:
+ *       - in: path
+ *         name: payment_info_id
+ *         type: integer
+ *         required: true
  *     responses:
  *       '200':
  *         description: Seccess
  */
 
-router.post('/add', validation, OrderHistoryControllers.addOrderHistory);
+router.post('/add/:payment_info_id', validation, OrderHistoryControllers.addOrderHistory);
 
 
 /**

@@ -1,38 +1,33 @@
-const { OrderHistoryModel, BasketModel } = require('../models/_models.js');
+const { OrderHistoryModel, BasketModel, PaymentInfoModel, ProductModel } = require('../models/_models.js');
 const count_price = require('../helpers/count_price.js');
 
-class OrderHistoryServices {
+class OrderHistoryServices { // done
 
     async getOrderHistory(user_id) {
-        return new Promise(async (res, rej) => {
             
-            const orderHistory = await OrderHistoryModel.findAll({ where: { user_id }})
-            res(orderHistory);
+        const orderHistory = await OrderHistoryModel.findAll({ where: { user_id }})
+        return orderHistory;
 
-        });
     };
 
-    async addOrderHistory(user_id, body) {
-        return new Promise(async (res, rej) => {
+    async addOrderHistory(user_id, payment_info_id) {
 
-            const { basket_id } = body;
-            const basket = await BasketModel.findOne({ where: { id: basket_id }});
+        const { products_array } = await PaymentInfoModel.findOne({ where: { id: payment_info_id }});
+        return await Promise.all(
+            products_array.map(async id => {
+                const product = await ProductModel.findOne({ where: { id }});
+                const createdOrderHistory = await OrderHistoryModel.create({ payment_info_id, product_id: product.id, price: product.price, user_id });
+                return createdOrderHistory;
+            })
+        );
 
-            const total_price = (await count_price(basket)).toFixed(2);
-
-            const createdOrderHistory = await OrderHistoryModel.create({ basket_id, total_price, user_id })
-            res(createdOrderHistory);
-
-        })
     };
 
     async deleteOrderHistory(user_id) {
-        return new Promise(async (res, rej) => {
             
-            const deletedResult = await OrderHistoryModel.destroy({ where: { user_id }})
-            res(deletedResult);
+        const deletedResult = await OrderHistoryModel.destroy({ where: { user_id }})
+        return deletedResult;
 
-        });
     };
 
 };

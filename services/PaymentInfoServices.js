@@ -1,28 +1,43 @@
-const { PaymentInfoModel, UserInfoModel, BasketModel } = require('../models/_models.js');
+const { PaymentInfoModel, UserInfoModel, BasketModel, ProductModel } = require('../models/_models.js');
+const BasketServices = require('./BasketServices.js');
 
-class PaymentInfoServices {
+class PaymentInfoServices { // done
 
     async getPaymentInfo(user_id) {
-        return new Promise(async (res, rej) => {
 
-            const info = await PaymentInfoModel.findAll({ where: { user_id }})
-            res(info);
+        const info = await PaymentInfoModel.findAll({ where: { user_id }});
+        return info;
         
-        });
     };
 
     async addPaymentInfo(user_id, body) {
-        return new Promise(async (res, rej) => {
 
-            const user_info = await UserInfoModel.findOne({ where: { user_id }});
-
-            const { id } = user_info;
-            const obj = {...body, user_info_id: id, user_id };
-
-            const addedPaymentInfo = await PaymentInfoModel.create(obj)
-            res(addedPaymentInfo);
+        const user_info = await UserInfoModel.findOne({ where: { user_id }});
+        
+        const basket = await BasketModel.findOne({ where: { user_id }});
+        const { products_array } = basket;
+        const price_array = await Promise.all(
+            products_array.map(async id => {
+                const { price } = await ProductModel.findOne({ where: { id }});
+                return price;
+            })
+        )
             
+        let amount_of_payment = await price_array.reduce((acc,cur) => acc + cur);
+
+        const addedPaymentInfo = await PaymentInfoModel.create({
+            ...body,
+            amount_of_payment,
+            products_array,
+            user_info_id: user_info.id,
+            user_id,
+            basket_id: basket.id
         });
+        
+        await BasketServices.clearBasket(user_id, 1);
+
+        return addedPaymentInfo;
+            
     };
 
 };

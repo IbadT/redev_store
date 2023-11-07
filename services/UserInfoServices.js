@@ -1,59 +1,51 @@
 const { UserInfoModel } = require('../models/_models.js');
 
-class UserInfoServices {
+class UserInfoServices { // done
 
     async getInfo(user_id) {
-        return new Promise(async (res, rej) => {
             
-            const userInfo = await UserInfoModel.findOne({ where: { user_id }});
-            if(userInfo) {
-                res(userInfo); // return ???
-            } rej('User don\'t added user-info');
-        });
+        const userInfo = await UserInfoModel.findOne({ where: { user_id }});
+        if(userInfo) {
+            return userInfo; // return ???
+        } return { message: 'User don\'t added user-info' };
     };
 
     async createUserInfo(user_id, body) {
-        return new Promise(async (res, rej) => {
 
-            const userInfo = await UserInfoModel.findOne({ where: { user_id } });
-            if(userInfo) {
-                rej('User info is already added'); // return ???
-            }
+        const userInfo = await UserInfoModel.findOne({ where: { user_id } });
+        if(userInfo) {
+            return { message: 'User info is already added' }; // return ???
+        }
                 
-            const createdData = await UserInfoModel.create({ ...body, user_id });
-            res(createdData);
+        const createdData = await UserInfoModel.create({ ...body, user_id });
+        return createdData;
         
-        });
     };
 
     async updateInfo(user_id, body) {
-        return new Promise(async (res, rej) => {
 
-            const updatedStatus = await UserInfoModel.update(body, { where: { user_id } });
+        const updatedStatus = await UserInfoModel.update(body, { where: { user_id } });
 
-            if( updatedStatus[0] ) {
+        if( updatedStatus[0] ) {
 
-                const data = await UserInfoModel.findOne({ where: { user_id }});
-                res(data);
+            const data = await UserInfoModel.findOne({ where: { user_id }});
+            return data;
 
-            } rej('Bad Request');
+        } return { message: 'Bad Request' };
 
-        });
     };
 
     async updateSomeInfo(user_id, body) {
-        return new Promise(async (res, rej) => {
 
-            const updatedStatus = await UserInfoModel.update(body, { where: { user_id } });
+        const updatedStatus = await UserInfoModel.update(body, { where: { user_id } });
 
-            if( updatedStatus[0] ) {
+        if( updatedStatus[0] ) {
 
-                const updatedInfo = await UserInfoModel.findOne({ where: { user_id }});
-                res(updatedInfo); // return ???
+            const updatedInfo = await UserInfoModel.findOne({ where: { user_id }});
+            return (updatedInfo); // return ???
 
-            } rej(updatedStatus);
+        } return updatedStatus;
 
-        });
     };
 
 };

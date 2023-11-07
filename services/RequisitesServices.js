@@ -1,32 +1,26 @@
 const { RequisitesModel } = require('../models/_models.js');
 
-class RequisitesServices {
+class RequisitesServices { // done
 
     async getCards(user_id) {
-        return new Promise(async (res, rej) => {
 
-            const cards = await RequisitesModel.findAll({ where: { user_id }});
-            res(cards);
+        const cards = await RequisitesModel.findAll({ where: { user_id }});
+        return cards;
         
-        });
     };
 
     async addCard(user_id, body) {
-        return new Promise(async (res, rej) => {
 
-            const addedCard = await RequisitesModel.create({...body, user_id});
-            res(addedCard);
+        const addedCard = await RequisitesModel.create({...body, user_id});
+        return addedCard;
         
-        });
     };
 
     async deleteCard(user_id, id) {
-        return new Promise(async (res, rej) => {
             
-            const deleteResult = await RequisitesModel.destroy({ where : { id, user_id }});
-            res(deleteResult);
+        const deleteResult = await RequisitesModel.destroy({ where : { id, user_id }});
+        return deleteResult;
         
-        });
     };
 
 };

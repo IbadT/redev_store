@@ -12,8 +12,8 @@ class PaymentInfoControllers {
             const paymentInfo = await PaymentInfoServices.getPaymentInfo(id);
             res.send(paymentInfo);
         } catch (error) {
-            Sentry.captureException(error);
             res.json(error);
+            Sentry.captureException(error);
         };
     };
 

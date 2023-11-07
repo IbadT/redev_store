@@ -1,22 +1,15 @@
 const { ProductModel } = require('../models/_models.js');
+const ProductServices = require('../services/ProductServices.js');
 
-async function findProductAndUpdate(id) {
+async function findProductAndUpdate(id, products_array) {
 
-    const product = await ProductModel.findOne({ where: { id }});
+    let { count } = await ProductServices.getProductById(id)
+    await Promise.all(
+        products_array.map(async product => {
+            // const 
+        })
+    )
 
-    if(product) {
-
-        let { count } = product;
-        console.log(product);
-        let promis = product.map(async (i) => {
-            const result = await ProductModel.update( { count: i.count+1 }, { where: { id }} );
-            return result;
-        });
-        Promise.all(promis);
-        console.log('update ', result)
-
-    }
-    return false;
 };
 
 module.exports = findProductAndUpdate;

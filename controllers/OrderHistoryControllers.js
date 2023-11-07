@@ -21,8 +21,8 @@ class OrderHistoryControllers {
         try {
             // validationResult(req).throw();
             const { id } = req.userId;
-            const { body } = req;
-            const createdOrderHistory = await OrderHistoryServices.addOrderHistory(id, body);
+            const { payment_info_id } = req.params;
+            const createdOrderHistory = await OrderHistoryServices.addOrderHistory(id, payment_info_id);
             res.send(createdOrderHistory);
         } catch (error) {
             Sentry.captureException(error);
