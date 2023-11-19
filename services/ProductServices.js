@@ -1,4 +1,5 @@
 const { ProductModel, OwnerInfoModel } = require('../models/_models.js');
+const { Op } = require('sequelize')
 
 class ProductServices { // done
 
@@ -16,9 +17,9 @@ class ProductServices { // done
 
     };
 
-    async searchByPrice(max) {
+    async searchByPrice(min, max) {
 
-        const products = await ProductModel.findAll( { where: {}, order: [['price', max ? 'DESC' : 'ASC']] } )
+        const products = await ProductModel.findAll({ where: { price: { [Op.gt]: min, [Op.lt]: max}}});
         return products;
 
     };
@@ -47,6 +48,18 @@ class ProductServices { // done
         return product;
         
     }; 
+
+    async getNotNullableCount() {
+        const productsWhichCountNotNull = await ProductModel.findAll({ where: {count: { [Op.gt]: 0 }}});
+
+        // const productsWhichCountNotNull = await ProductModel.findAll({ where: {count: { $gt: 10 }}});
+        return productsWhichCountNotNull;
+    }
+
+    async sortByPrice(max) {
+        const products = await ProductModel.findAll( { where: {}, order: [['price', max ? 'DESC' : 'ASC']] } )
+        return products;
+    }
 
     async addProduct(user_id, body) {
 

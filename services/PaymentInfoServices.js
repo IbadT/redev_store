@@ -10,12 +10,16 @@ class PaymentInfoServices { // done
         
     };
 
-    async addPaymentInfo(user_id, body) {
+    async addPaymentInfo(user_id, body, confirm) {
+        if(confirm !== 'confirm') {
+            throw new Error('You must enter the word "confirm" ')
+        }
 
         const user_info = await UserInfoModel.findOne({ where: { user_id }});
         
         const basket = await BasketModel.findOne({ where: { user_id }});
         const { products_array } = basket;
+
         const price_array = await Promise.all(
             products_array.map(async id => {
                 const { price } = await ProductModel.findOne({ where: { id }});
@@ -34,8 +38,8 @@ class PaymentInfoServices { // done
             basket_id: basket.id
         });
         
-        await BasketServices.clearBasket(user_id, 1);
-
+        const { id } = await BasketModel.findOne({ where: { user_id }});
+        await BasketModel.update({ products_array: [], user_id }, { where: { id }});
         return addedPaymentInfo;
             
     };

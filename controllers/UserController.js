@@ -3,7 +3,6 @@ const Sentry = require('@sentry/node');
 const UserServices = require('../services/UserServices.js');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-
 const { validationResult } = require('express-validator');
 
 
@@ -31,7 +30,6 @@ class UserControllers {
 
 
     async register(req, res) {
-
         try {
             validationResult(req).throw();
             const { login, password } = req.body;
@@ -55,10 +53,7 @@ class UserControllers {
 
     async logout(req, res) {
         try {
-            // req.logOut();
-            req.headers.authorization = '';
-            // res.redirect('/')
-            res.sendStatus(200);
+            res.redirect('/');
         } catch (error) {
             Sentry.captureException(error);
             res.json(error);

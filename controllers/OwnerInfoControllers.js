@@ -41,6 +41,18 @@ class OwnerInfoControllers {
             Sentry.captureException(error);
             res.json(error);
         }
+    };
+
+    async deleteOwnerInfo(req, res) {
+        try {
+            const { id } = req.userId;
+            const result = await OwnerInfoServices.deleteOwnerInfo(id);
+            res.send(result);
+
+        } catch (error) {
+            Sentry.captureException(error);
+            res.json(error);
+        }
     }
     
 };

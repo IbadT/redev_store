@@ -48,6 +48,11 @@ router.get('/get', validation, PaymentInfoControllers.getPaymentInfo);
  *               order_status_id:
  *                 type: integer
  *                 default: 1
+ *     parameters:
+ *       - in: query
+ *         name: confirm
+ *         type: string
+ *         required: false
  *     responses:
  *       '200':
  *         description: Seccess

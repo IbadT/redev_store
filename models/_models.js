@@ -21,14 +21,14 @@ UserInfoModel.belongsTo(UserModel, { foreignKey: 'user_id' });
 UserInfoModel.hasMany(PaymentInfoModel, { foreignKey: 'user_info_id' });
 PaymentInfoModel.belongsTo(UserInfoModel, { foreignKey: 'user_info_id' });
 
-PaymentInfoModel.hasOne(PaymentMethodsModel, { foreignKey: 'payment_method_id' });
-PaymentMethodsModel.belongsTo(PaymentInfoModel, { foreignKey: 'payment_method_id' });
+PaymentMethodsModel.hasOne(PaymentInfoModel, { foreignKey: 'payment_method_id' });
+PaymentInfoModel.belongsTo(PaymentMethodsModel, { foreignKey: 'payment_method_id' });
 
-PaymentInfoModel.hasOne(DeliveryMethodsModel, { foreignKey: 'delivery_method_id' });
-DeliveryMethodsModel.belongsTo(PaymentInfoModel, { foreignKey: 'delivery_method_id' });
+DeliveryMethodsModel.hasOne(PaymentInfoModel, { foreignKey: 'delivery_method_id' });
+PaymentInfoModel.belongsTo(DeliveryMethodsModel, { foreignKey: 'delivery_method_id' });
 
-PaymentInfoModel.hasOne(OrderStatusesModel, { foreignKey: 'order_status_id' });
-OrderStatusesModel.belongsTo(PaymentInfoModel, { foreignKey: 'order_status_id' });
+OrderStatusesModel.hasOne(PaymentInfoModel, { foreignKey: 'order_status_id' });
+PaymentInfoModel.belongsTo(OrderStatusesModel, { foreignKey: 'order_status_id' });
 
 UserModel.hasOne(RequisitesModel, { foreignKey: 'user_id' });
 RequisitesModel.belongsTo(UserModel, { foreignKey: 'user_id' });
@@ -75,7 +75,7 @@ PaymentInfoModel.belongsTo(UserModel, { foreignKey: 'user_id' });
 
 (async () => {
 
-    const fs = require('fs');
+    // const fs = require('fs');
 
     // await UserModel.sync({ force: true }).then(() => {
     //     fs.readFile('./jsonMethods/users.json', 'utf8', (err, users_json) => {

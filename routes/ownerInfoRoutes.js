@@ -83,4 +83,20 @@ router.post('/add', validation, OwnerInfoControllers.addOwnerInfo);
 router.put('/edit', validation, OwnerInfoControllers.editOwnerInfo);
 
 
+/**
+ * @swagger
+ * /api/owner-info/delete:
+ *   delete:
+ *     summary: Delete
+ *     tags: [Owner-Info]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       '200': 
+ *         description: Secces
+ */
+
+router.delete('/delete', validation, OwnerInfoControllers.deleteOwnerInfo);
+
+
 module.exports = router;

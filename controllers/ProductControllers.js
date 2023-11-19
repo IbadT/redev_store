@@ -32,8 +32,8 @@ class ProductControllers {
     async searchByPrice(req, res) {
         try {
             // validationResult(req).throw();
-            const { max } = req.query;
-            const searchingProducts = await ProductServices.searchByPrice(max);
+            const { min, max } = req.query;
+            const searchingProducts = await ProductServices.searchByPrice(min, max);
             res.send(searchingProducts);
         } catch (error) {
             Sentry.captureException(error);
@@ -77,6 +77,25 @@ class ProductControllers {
             res.json(error);
         };
     }; 
+
+    async getNotNullableCount(req, res) {
+        try {
+            const productsWhichCountNotNull = await ProductServices.getNotNullableCount();
+            res.send(productsWhichCountNotNull);
+        } catch (error) {
+            res.json(error);
+        }
+    };
+
+    async sortByPrice(req, res) {
+        try {
+            const { max } = req.params;
+            const sortedProducts = await ProductServices.sortByPrice(max);
+            res.send(sortedProducts);
+        } catch (error) {
+            res.json(error);
+        }
+    }
 
     async addProduct(req, res) {
         try {

@@ -9,7 +9,7 @@ const { param } = require('express-validator')
  * /api/basket/get:
  *   get:
  *     summary: Get user's basket
- *     tags: [Basket]
+ *     tags: [Baskets]
  *     security: 
  *       - bearerAuth: []
  *     responses:
@@ -25,7 +25,7 @@ router.get('/get', validation, BasketControllers.getBasket);
  * /api/basket/add/{product_id}:
  *   post:
  *     summary: Add product in user's basket
- *     tags: [Basket]
+ *     tags: [Baskets]
  *     security: 
  *       - bearerAuth: []
  *     parameters:
@@ -41,12 +41,35 @@ router.get('/get', validation, BasketControllers.getBasket);
 router.post('/add/:product_id', validation, param('product_id').toInt(), BasketControllers.addBasket);
 
 
+// /**
+//  * @swagger
+//  * /api/basket/confirm:
+//  *   post:
+//  *     summary: CONFIRM
+//  *     tags: [Baskets]
+//  *     security: 
+//  *       - bearerAuth: []
+//  *     parameters:
+//  *       - in: query
+//  *         name: confirm
+//  *         type: integer
+//  *         required: true
+//  *     responses:
+//  *       '200':
+//  *         description: Seccess
+//  */
+
+// router.post('/confirm', validation, BasketControllers.confirmPayment)
+
+
+
+
 /**
  * @swagger
  * /api/basket/delete:
  *   delete:
  *     summary: Delete user's basket
- *     tags: [Basket]
+ *     tags: [Baskets]
  *     security:
  *       - bearerAuth: []
  *     responses:
@@ -55,6 +78,7 @@ router.post('/add/:product_id', validation, param('product_id').toInt(), BasketC
  */
 
 router.delete('/delete', validation, BasketControllers.deleteBasket);
+
 
 
 module.exports = router;

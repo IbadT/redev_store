@@ -18,6 +18,7 @@ const OrderHistoryModel = db.define(
             allowNull: false,
             require: true
         },
+        // ADD for update orderHistory status, not paymentInfo 
         // order_status_id: {
         //     type: Sequelize.INTEGER,
         //     allowNull: false,

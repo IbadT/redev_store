@@ -22,11 +22,12 @@ class PaymentInfoControllers {
             // validationResult(req).throw();
             const { id } = req.userId;
             const { body } = req;
-            const addedPaymentInfo = await PaymentInfoServices.addPaymentInfo(id, body);
+            const { confirm = '' } = req.query;
+            const addedPaymentInfo = await PaymentInfoServices.addPaymentInfo(id, body, confirm.toLowerCase());
             res.send(addedPaymentInfo);
         } catch (error) {
+            res.json(error.message);
             Sentry.captureException(error);
-            res.json(error);
         };
     };
 

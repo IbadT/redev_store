@@ -2,17 +2,7 @@ require('dotenv').config();
 const router = require('express').Router();
 const UserControllers = require('../controllers/UserController.js');
 const validation = require('../helpers/validation.js');
-
-// const { body, check, header } = require('express-validator');
-
-
-
-// function isLoggedIn(req, res, next) {
-//     if(req.isAuthenticated()) {
-//         return next();
-//     }
-//     res.redirect('/login');
-// }
+const logout = require('../helpers/logout.js')
 
 
 
@@ -82,7 +72,7 @@ router.post('/register', UserControllers.register);
  *         description: Seccess
  */
 
-router.post('/logout', validation, UserControllers.logout);
+router.post('/logout', validation, logout, UserControllers.logout);
 
 
 /**

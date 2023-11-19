@@ -1,1 +1,10 @@
-["issued", "awaiting_payment", "paid", "confirmed"]
+[
+    "open-открыт", 
+    "formalization - оформнение", 
+    "assembly - сборка", 
+    "assembled - собран", 
+    "shipped - отгружен", 
+    "on the way - в пути", 
+    "accepted to sorting point - принят в сортировочный центр", 
+    "ready to receive - готов к получению"
+]

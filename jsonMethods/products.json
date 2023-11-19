@@ -17,7 +17,7 @@
         "color": "Black",
         "price":130.99,
         "category_id": 1,
-        "owner_info_id": 1
+        "owner_info_id": 2
     },
     {
         "name": "T-short",
@@ -27,7 +27,7 @@
         "color": "White",
         "price": 37.90,
         "category_id": 2,
-        "owner_info_id": 1
+        "owner_info_id": 3
     },
     {
         "name": "T-short",
@@ -47,7 +47,7 @@
         "color": "Gray",
         "price":79.90,
         "category_id": 3,
-        "owner_info_id": 1
+        "owner_info_id": 2
     },
     {
         "name": "Zara",
@@ -57,7 +57,7 @@
         "color": "Blue",
         "price": 134.00,
         "category_id": 3,
-        "owner_info_id": 1
+        "owner_info_id": 3
     },
     {
         "name": "Sofa",
@@ -97,7 +97,7 @@
         "color": "Green",
         "price": 10.90,
         "category_id": 5,
-        "owner_info_id": 1
+        "owner_info_id": 2
     },
     {
         "name": "Sandwich",
@@ -107,7 +107,7 @@
         "color": "Brown",
         "price": 8.90,
         "category_id": 6,
-        "owner_info_id": 1
+        "owner_info_id": 3
     },
     {
         "name": "Sandwich",
@@ -117,7 +117,7 @@
         "color": "Black",
         "price": 19.99,
         "category_id": 6,
-        "owner_info_id": 1
+        "owner_info_id": 3
     },
     {
         "name": "Book",
@@ -127,7 +127,7 @@
         "color": "Purple",
         "price": 20.00,
         "category_id": 7,
-        "owner_info_id": 1
+        "owner_info_id": 3
     },
     {
         "name": "Book",
@@ -137,7 +137,7 @@
         "color": "Black",
         "price": 39.90,
         "category_id": 7,
-        "owner_info_id": 1
+        "owner_info_id": 3
     },
     {
         "name": "Children Toy",
@@ -147,7 +147,7 @@
         "color": "Green",
         "price": 13.90,
         "category_id": 8,
-        "owner_info_id": 1
+        "owner_info_id": 3
     },
     {
         "name": "Children Toy",
@@ -157,7 +157,7 @@
         "color": "Yelow",
         "price": 50.90,
         "category_id": 8,
-        "owner_info_id": 1
+        "owner_info_id": 3
     },
     {
         "name": "Zara",
@@ -187,7 +187,7 @@
         "color": "Yellow",
         "price": 25.00,
         "category_id": 2,
-        "owner_info_id": 1
+        "owner_info_id": 2
     },
     {
         "name": "Sofa",
@@ -197,7 +197,7 @@
         "color": "Red",
         "price": 650.00,
         "category_id": 4,
-        "owner_info_id": 1
+        "owner_info_id": 2
     },
     {
         "name": "Sportswear",
@@ -207,7 +207,7 @@
         "color": "Purple",
         "price": 14.50,
         "category_id": 5,
-        "owner_info_id": 1
+        "owner_info_id": 2
     },
     {
         "name": "Sandwich",
@@ -217,7 +217,7 @@
         "color": "Brown",
         "price": 19.90,
         "category_id": 6,
-        "owner_info_id": 1
+        "owner_info_id": 2
     },
     {
         "name": "Sandwich",
@@ -227,7 +227,7 @@
         "color": "Brown",
         "price": 13.50,
         "category_id": 7,
-        "owner_info_id": 1
+        "owner_info_id": 2
     },
     {
         "name": "Children Toy",
@@ -237,7 +237,7 @@
         "color": "Yellow-red",
         "price": 15.50,
         "category_id": 8,
-        "owner_info_id": 1
+        "owner_info_id": 2
     },
     {
         "name": "TV",
@@ -247,7 +247,7 @@
         "color": "Black-white",
         "price": 1300.00,
         "category_id": 1,
-        "owner_info_id": 1
+        "owner_info_id": 2
     },
     {
         "name": "TV",
@@ -257,7 +257,7 @@
         "color": "Black",
         "price": 790.00,
         "category_id": 1,
-        "owner_info_id": 1
+        "owner_info_id": 2
     },
     {
         "name": "T-short",
@@ -287,7 +287,7 @@
         "color": "Brown",
         "price": 79.00,
         "category_id": 3,
-        "owner_info_id": 1
+        "owner_info_id": 2
     },
     {
         "name": "Zara",
@@ -297,7 +297,7 @@
         "color": "Brown",
         "price": 59.00,
         "category_id": 3,
-        "owner_info_id": 1
+        "owner_info_id": 2
     },
     {
         "name": "Sofa",
@@ -307,7 +307,7 @@
         "color": "Yellow",
         "price": 790.00,
         "category_id": 4,
-        "owner_info_id": 1
+        "owner_info_id": 2
     },
     {
         "name": "Sofa",
@@ -317,7 +317,7 @@
         "color": "Black",
         "price": 480.90,
         "category_id": 4,
-        "owner_info_id": 1
+        "owner_info_id": 2
     },
     {
         "name": "Sportswear",
@@ -327,7 +327,7 @@
         "color": "Green-black",
         "price": 35.90,
         "category_id": 5,
-        "owner_info_id": 1
+        "owner_info_id": 2
     },
     {
         "name": "Sportswear",
@@ -337,7 +337,7 @@
         "color": "Black",
         "price": 13.50,
         "category_id": 5,
-        "owner_info_id": 1
+        "owner_info_id": 2
     },
     {
         "name": "Sandwich",
@@ -377,7 +377,7 @@
         "color": "Black-white",
         "price": 15.00,
         "category_id": 7,
-        "owner_info_id": 1
+        "owner_info_id": 3
     },
     {
         "name": "Children Toy",
@@ -387,7 +387,7 @@
         "color": "Green",
         "price": 5.00,
         "category_id": 8,
-        "owner_info_id": 1
+        "owner_info_id": 3
     },
     {
         "name": "Children Toy",
@@ -397,7 +397,7 @@
         "color": "Gray",
         "price": 99.99,
         "category_id": 8,
-        "owner_info_id": 1
+        "owner_info_id": 3
     },
     {
         "name": "Zara",
@@ -407,7 +407,7 @@
         "color": "Gray",
         "price": 79.99,
         "category_id": 3,
-        "owner_info_id": 1
+        "owner_info_id": 3
     },
     {
         "name": "TV",
@@ -417,7 +417,7 @@
         "color": "White",
         "price": 699.00,
         "category_id": 1,
-        "owner_info_id": 1
+        "owner_info_id": 3
     },
     {
         "name": "Zara",
@@ -427,7 +427,7 @@
         "color": "White",
         "price": 13.90,
         "category_id": 3,
-        "owner_info_id": 1
+        "owner_info_id": 3
     },
     {
         "name": "T-short",
@@ -437,7 +437,7 @@
         "color": "Black",
         "price": 13.50,
         "category_id": 2,
-        "owner_info_id": 1
+        "owner_info_id": 3
     },
     {
         "name": "Sofa",
@@ -447,7 +447,7 @@
         "color": "Black-white",
         "price": 699.00,
         "category_id": 4,
-        "owner_info_id": 1
+        "owner_info_id": 3
     },
     {
         "name": "Sportswear",

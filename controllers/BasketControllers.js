@@ -40,7 +40,7 @@ class BasketControllers {
             Sentry.captureException(error);
             res.json(error);
         };
-    }    ;
+    };
 
 
 };

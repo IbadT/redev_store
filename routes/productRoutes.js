@@ -5,6 +5,13 @@ const { param } = require('express-validator')
 
 
 
+// поиск по цене
+
+
+
+
+
+
 /**
  * @swagger
  * /api/products/get:
@@ -21,25 +28,25 @@ const { param } = require('express-validator')
 router.get('/get', ProductControllers.getAllProduct);
 
 
-/**
- * @swagger
- * /api/products/get-product/{id}:
- *   get:
- *     summary: Get some product by id
- *     tags: [Products]
- *     security: 
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         type: integer
- *     responses:
- *       '200':
- *         description: Seccess
- */
+// /**
+//  * @swagger
+//  * /api/products/get-product/{id}:
+//  *   get:
+//  *     summary: Get some product by id
+//  *     tags: [Products]
+//  *     security: 
+//  *       - bearerAuth: []
+//  *     parameters:
+//  *       - in: path
+//  *         name: id
+//  *         required: true
+//  *         type: integer
+//  *     responses:
+//  *       '200':
+//  *         description: Seccess
+//  */
 
-router.get('/get-product/:id', param('id').toInt(), ProductControllers.getProductById);
+// router.get('/get-product/:id', param('id').toInt(), ProductControllers.getProductById);
 
 
 /**
@@ -64,7 +71,7 @@ router.get('/search-category/:category_id', ProductControllers.searchByCategory)
 
 /**
  * @swagger
- * /api/products/sort-by-price:
+ * /api/products/search-by-price:
  *   get:
  *     summary: Search and sort products by price
  *     tags: [Products]
@@ -72,40 +79,65 @@ router.get('/search-category/:category_id', ProductControllers.searchByCategory)
  *       - bearerAuth: []
  *     parameters:
  *       - in: query
+ *         name: min
+ *         required: true
+ *         type: number
+ *       - in: query
  *         name: max
- *         required: false
- *         type: boolean
+ *         required: true
+ *         type: number
  *     responses:
  *       '200':
  *         description: Seccess
  */
 
-router.get('/sort-by-price', ProductControllers.searchByPrice);
+router.get('/search-by-price', ProductControllers.searchByPrice); 
 
 
 /**
  * @swagger
- * /api/products/search-by-count/{maxCount}:
+ * /api/products/sort-by-price:
  *   get:
- *     summary: Search products by count
+ *     summary: Sort by products
  *     tags: [Products]
  *     security:
  *       - bearerAuth: []
  *     parameters:
- *       - in: path
- *         name: maxCount
- *         required: false
- *         type: boolean
  *       - in: query
- *         name: category_id
- *         type: integer
- *         required: false
+ *         name: max
+ *         required: true
+ *         type: boolean
  *     responses:
  *       '200':
  *         description: Seccess
  */
 
-router.get('/search-by-count/:maxCount', ProductControllers.searchByCount); 
+router.get('/sort-by-price', ProductControllers.sortByPrice);
+
+
+// /**
+//  * @swagger
+//  * /api/products/search-by-count/{maxCount}:
+//  *   get:
+//  *     summary: Search products by count
+//  *     tags: [Products]
+//  *     security:
+//  *       - bearerAuth: []
+//  *     parameters:
+//  *       - in: path
+//  *         name: maxCount
+//  *         required: false
+//  *         type: boolean
+//  *       - in: query
+//  *         name: category_id
+//  *         type: integer
+//  *         required: false
+//  *     responses:
+//  *       '200':
+//  *         description: Seccess
+//  */
+
+// router.get('/search-by-count/:maxCount', ProductControllers.searchByCount); 
 
 
 /**
@@ -131,6 +163,24 @@ router.get('/search-by-count/:maxCount', ProductControllers.searchByCount);
  */
 
 router.get('/sort-by-created', ProductControllers.searchByCreated);
+
+
+
+/**
+ * @swagger
+ * /api/products/get-not-nullable-count:
+ *   get:
+ *     summary: Get products which have param COUNT is great then 0
+ *     tags: [Products]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       '200':
+ *         description: Seccess
+ */
+
+router.get('/get-not-nullable-count', ProductControllers.getNotNullableCount)
+
 
 
 /**
